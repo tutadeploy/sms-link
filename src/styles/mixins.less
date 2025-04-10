@@ -1,0 +1,106 @@
+// Responsive breakpoints
+.responsive(@rules) {
+  @media (min-width: @breakpoints[mobile]) {
+    @rules();
+  }
+}
+
+.tablet(@rules) {
+  @media (min-width: @breakpoints[tablet]) {
+    @rules();
+  }
+}
+
+.desktop(@rules) {
+  @media (min-width: @breakpoints[desktop]) {
+    @rules();
+  }
+}
+
+.wide(@rules) {
+  @media (min-width: @breakpoints[wide]) {
+    @rules();
+  }
+}
+
+// Container
+.container() {
+  width: @container-widths[mobile];
+  margin: 0 auto;
+  padding: 0 @spacing[md];
+
+  .tablet({
+    width: @container-widths[tablet];
+  });
+
+  .desktop({
+    width: @container-widths[desktop];
+  });
+
+  .wide({
+    width: @container-widths[wide];
+  });
+}
+
+// Form elements
+.form-control() {
+  width: 100%;
+  height: @form-element-height;
+  padding: 0 @spacing[sm];
+  border: 1px solid @form-border-color;
+  border-radius: @form-border-radius;
+  font-size: @font-sizes[md];
+  transition: border-color @transition-duration @transition-timing;
+
+  &:focus {
+    outline: none;
+    border-color: @form-focus-border-color;
+  }
+}
+
+// Button styles
+.button-base() {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: @form-element-height;
+  padding: 0 @spacing[lg];
+  border: none;
+  border-radius: @form-border-radius;
+  font-size: @font-sizes[md];
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color @transition-duration @transition-timing;
+}
+
+// Card styles
+.card() {
+  background: white;
+  border-radius: @form-border-radius;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: @spacing[lg];
+
+  .tablet({
+    padding: @spacing[xl];
+  });
+}
+
+// Grid system
+.grid(@columns: 12) {
+  display: grid;
+  gap: @spacing[md];
+  grid-template-columns: repeat(@columns, 1fr);
+}
+
+// Flexbox utilities
+.flex-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between() {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

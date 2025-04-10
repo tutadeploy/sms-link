@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="40" viewBox="0 0 200 40" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <g fill="#004B87">
+    <path d="M20,5 h160 v30 h-160 v-30 z" fill="none" stroke="#004B87" stroke-width="2"/>
+    <text x="40" y="27" font-family="Arial Black" font-size="20" font-weight="bold">USPS.COM</text>
+    <path d="M25,10 l10,10 l-10,10" fill="none" stroke="#004B87" stroke-width="2"/>
+  </g>
+</svg> 

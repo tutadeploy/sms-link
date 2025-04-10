@@ -1,0 +1,1170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>USPS Style Form</title>
+    <style>
+      :root {
+        --usps-blue: #333366;
+        --usps-red: #e71921;
+        --usps-gray: #f8f8f8;
+        --usps-dark-gray: #333333;
+        --usps-border: #e7e7e7;
+        --usps-link-blue: #336;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        background-color: white;
+      }
+
+      /* Mobile menu button */
+      .mobile-hamburger {
+        display: none;
+        width: 35px;
+        height: 35px;
+        padding: 10px;
+        cursor: pointer;
+      }
+
+      .mobile-header {
+        display: none;
+        width: 100%;
+        height: 50px;
+        background: white;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+        box-sizing: border-box;
+      }
+
+      .mobile-logo {
+        height: 32px;
+        width: auto;
+      }
+
+      .mobile-search {
+        width: 35px;
+        height: 35px;
+        padding: 10px;
+      }
+
+      @media only screen and (max-width: 958px) {
+        body {
+          min-width: auto;
+          background-color: #f8f9fc;
+        }
+
+        .utility-header,
+        .main-header,
+        .quick-tools,
+        .nav-container,
+        .main-nav,
+        .nav-tools,
+        .quick-tools-nav,
+        .logo-container {
+          display: none !important;
+        }
+
+        .mobile-header {
+          display: flex;
+          border-bottom: 3px solid var(--usps-red);
+          background: white;
+          position: sticky;
+          top: 0;
+          z-index: 100;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .mobile-hamburger {
+          display: block;
+        }
+
+        .container {
+          margin: 0;
+          padding: 24px 16px;
+          box-shadow: none;
+          background: transparent;
+        }
+
+        h2 {
+          font-size: 24px;
+          margin-bottom: 32px;
+          font-weight: 600;
+          position: relative;
+          padding-bottom: 16px;
+        }
+
+        h2::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60px;
+          height: 3px;
+          background: var(--usps-red);
+          border-radius: 2px;
+        }
+
+        .form-section {
+          background: white;
+          border-radius: 16px;
+          padding: 24px 20px;
+          margin-bottom: 24px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .form-section-title {
+          font-size: 20px;
+          margin-bottom: 28px;
+          font-weight: 600;
+          color: var(--usps-blue);
+          position: relative;
+          padding-left: 16px;
+        }
+
+        .form-section-title::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 4px;
+          height: 24px;
+          background: var(--usps-red);
+          border-radius: 2px;
+        }
+
+        .form-group {
+          flex-direction: column;
+          margin-bottom: 32px;
+          min-height: 80px;
+        }
+
+        label {
+          width: 100%;
+          text-align: left;
+          padding: 0 0 8px 0;
+          font-size: 15px;
+          color: #333;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+        }
+
+        label::after {
+          margin-left: 4px;
+        }
+
+        .input-area {
+          width: 100%;
+          margin-bottom: 8px;
+        }
+
+        input {
+          width: 100% !important;
+          height: 52px;
+          font-size: 16px;
+          border-radius: 10px;
+          padding: 0 16px;
+          border: 1.5px solid #ccd0d9;
+          background-color: white;
+          transition: all 0.2s ease;
+          margin-bottom: 0;
+        }
+
+        input::placeholder {
+          color: #999;
+          font-size: 15px;
+        }
+
+        input:focus {
+          border-color: var(--usps-blue);
+          box-shadow: 0 0 0 3px rgba(51, 51, 102, 0.1);
+        }
+
+        .two-inputs-row,
+        .three-inputs-row {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          width: 100%;
+        }
+
+        .two-inputs-row input,
+        .three-inputs-row input {
+          width: 100% !important;
+          margin-bottom: 0;
+        }
+
+        .two-inputs-row .error-message,
+        .three-inputs-row .error-message {
+          position: relative;
+          margin-top: 8px;
+          width: 100%;
+          display: none;
+        }
+
+        .two-inputs-row .error-message.show,
+        .three-inputs-row .error-message.show {
+          display: block;
+        }
+
+        .submit-button {
+          width: 100%;
+          margin-top: 32px;
+          height: 56px;
+          font-size: 17px;
+          font-weight: 600;
+          border-radius: 12px;
+          background: var(--usps-blue);
+          box-shadow: 0 2px 4px rgba(51, 51, 102, 0.2);
+          transition: all 0.2s ease;
+        }
+
+        .submit-button:active {
+          transform: translateY(1px);
+          box-shadow: 0 1px 2px rgba(51, 51, 102, 0.1);
+        }
+
+        /* 错误提示样式 */
+        .error-message {
+          color: var(--usps-red);
+          font-size: 13px;
+          margin-top: 8px;
+          margin-bottom: 0;
+          display: none;
+          position: relative;
+          width: 100%;
+        }
+
+        .error-message.show {
+          display: block;
+        }
+
+        input.error {
+          border-color: var(--usps-red);
+          background-color: #fff8f8;
+        }
+
+        input.valid {
+          border-color: #28a745;
+          background-color: #f8fff9;
+        }
+
+        /* 卡号行样式 */
+        .card-number-row {
+          width: 100%;
+          margin-bottom: 24px;
+          position: relative;
+        }
+
+        .card-number-row input {
+          width: 100% !important;
+          margin-bottom: 0;
+        }
+
+        .card-number-row .error-message {
+          position: relative;
+          margin-top: 8px;
+          width: 100%;
+        }
+      }
+
+      .utility-container {
+        max-width: none;
+        margin: 0;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0;
+        height: 32px;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      .utility-link {
+        color: #575757;
+        text-decoration: none;
+        font-size: 10px;
+        padding: 0 22px;
+        font-family:
+          HelveticaNeueW02-75Bold, 'Helvetica Neue', Helvetica, Arial,
+          sans-serif;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-weight: 600;
+        height: 100%;
+      }
+
+      .utility-icon {
+        width: 14px;
+        height: 14px;
+        opacity: 0.7;
+      }
+
+      .main-header {
+        padding: 0;
+        border-bottom: none;
+        display: flex;
+      }
+
+      .header-container {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        position: relative;
+        width: 100%;
+        box-sizing: border-box;
+        height: 42px;
+        justify-content: flex-end;
+      }
+
+      .logo-container {
+        background: white;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        margin-right: auto;
+      }
+
+      .logo {
+        width: 180px;
+        height: auto;
+      }
+
+      .nav-container {
+        background: #d8d8d8;
+        flex: 1;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding-right: 0;
+        margin-right: 0;
+        clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%);
+        position: relative;
+      }
+
+      .main-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        line-height: 1.05;
+        margin: 0;
+        padding: 0;
+        flex: 1;
+      }
+
+      .nav-link {
+        color: var(--usps-blue);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        position: relative;
+        flex: 1;
+        justify-content: center;
+        white-space: nowrap;
+        padding: 0 10px;
+      }
+
+      .search-icon {
+        margin-left: auto;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        filter: brightness(0) invert(1);
+      }
+
+      .quick-tools {
+        background-color: white;
+        border-bottom: 1px solid var(--usps-border);
+        position: relative;
+      }
+
+      .quick-tools-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 16px;
+        display: flex;
+        align-items: stretch;
+      }
+
+      .quick-tools-link {
+        color: var(--usps-link-blue);
+        text-decoration: none;
+        padding: 12px 24px;
+        font-size: 13px;
+        border-right: 1px solid var(--usps-border);
+        display: flex;
+        align-items: center;
+        font-weight: 400;
+        position: relative;
+      }
+
+      .quick-tools-link:first-child {
+        background-color: var(--usps-red);
+        color: white;
+        font-weight: 600;
+        padding: 12px 32px;
+        font-size: 14px;
+      }
+
+      .quick-tools-link:hover:not(:first-child) {
+        background-color: var(--usps-gray);
+      }
+
+      .nav-tools {
+        margin-left: 0;
+        padding-right: 20px;
+      }
+
+      .nav-tools-link {
+        color: var(--usps-link-blue);
+        text-decoration: none;
+        padding: 0 16px;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+
+      .nav-tools-icon {
+        width: 24px;
+        height: 24px;
+        filter: none;
+      }
+
+      /* 基础样式 - 两端共用 */
+      .container {
+        background-color: white;
+      }
+
+      h2 {
+        color: var(--usps-blue);
+        text-align: center;
+        position: relative;
+        padding-bottom: 20px;
+      }
+
+      .form-section-title {
+        color: var(--usps-blue);
+        position: relative;
+      }
+
+      .form-group {
+        position: relative;
+      }
+
+      label::after {
+        content: ' *';
+        color: var(--usps-red);
+        font-weight: bold;
+      }
+
+      input {
+        border: 1px solid #ddd;
+        box-sizing: border-box;
+        transition: all 0.2s ease;
+      }
+
+      input:hover {
+        border-color: #b3b3cc;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: var(--usps-blue);
+        background-color: #fff;
+        box-shadow: 0 0 0 3px rgba(51, 51, 102, 0.1);
+      }
+
+      /* 添加自动填充样式 */
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus {
+        -webkit-text-fill-color: #333;
+        -webkit-box-shadow: 0 0 0px 1000px #f8fff9 inset;
+        transition: background-color 5000s ease-in-out 0s;
+        border-color: #28a745;
+      }
+
+      /* 添加自动填充时的背景色 */
+      input:-webkit-autofill {
+        background-color: #f8fff9 !important;
+      }
+
+      .submit-button {
+        background-color: var(--usps-blue);
+        color: white;
+        border: none;
+        cursor: pointer;
+        display: block;
+        transition: all 0.2s ease;
+      }
+
+      /* PC端特有样式 */
+      @media only screen and (min-width: 959px) {
+        .container {
+          max-width: 960px;
+          margin: 40px auto;
+          padding: 48px 64px;
+          box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+          border-radius: 12px;
+          background: #fff;
+        }
+
+        .header-container {
+          width: 100%;
+          margin: 0;
+          justify-content: flex-end;
+        }
+
+        h2 {
+          font-size: 32px;
+          margin: 0 0 64px;
+          font-weight: 600;
+          color: var(--usps-blue);
+          letter-spacing: -0.5px;
+          padding-bottom: 24px;
+        }
+
+        h2::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 100px;
+          height: 4px;
+          background: var(--usps-red);
+          border-radius: 2px;
+        }
+
+        .form-section {
+          margin-bottom: 48px;
+          padding: 40px;
+          background: #f8f9fc;
+          border-radius: 12px;
+          border: 1px solid #e8e9ec;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .form-section-title {
+          font-size: 24px;
+          margin-bottom: 36px;
+          font-weight: 600;
+          padding-left: 20px;
+          display: flex;
+          align-items: center;
+          color: var(--usps-blue);
+        }
+
+        .form-section-title::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 6px;
+          height: 32px;
+          background-color: var(--usps-red);
+          border-radius: 3px;
+        }
+
+        .form-group {
+          display: flex;
+          align-items: flex-start;
+          margin-bottom: 28px;
+          min-height: 44px;
+          position: relative;
+        }
+
+        label {
+          width: 180px;
+          text-align: right;
+          padding-right: 32px;
+          padding-top: 12px;
+          font-size: 15px;
+          color: #333;
+          font-weight: 500;
+          flex-shrink: 0;
+          line-height: 1.4;
+        }
+
+        .input-area {
+          width: 540px;
+          flex-shrink: 0;
+        }
+
+        input {
+          flex: none;
+          height: 46px;
+          padding: 0 16px;
+          border-radius: 6px;
+          font-size: 15px;
+          background-color: white;
+          border: 1px solid #ccd0d9;
+          transition: all 0.2s ease;
+          width: 100%;
+          box-sizing: border-box;
+        }
+
+        /* 两个输入框的行 */
+        .two-inputs-row {
+          display: flex;
+          gap: 20px;
+          width: 100%;
+        }
+
+        .two-inputs-row input {
+          width: auto;
+        }
+
+        .two-inputs-row input:first-child {
+          width: calc(63% - 10px);
+        }
+
+        .two-inputs-row input:last-child {
+          width: calc(37% - 10px);
+        }
+
+        /* 三个输入框的行 */
+        .three-inputs-row {
+          display: flex;
+          gap: 20px;
+          width: 100%;
+        }
+
+        .three-inputs-row input {
+          width: auto;
+        }
+
+        .three-inputs-row input:nth-child(1) {
+          width: calc(35% - 13.33px);
+        }
+
+        .three-inputs-row input:nth-child(2) {
+          width: calc(35% - 13.33px);
+        }
+
+        .three-inputs-row input:nth-child(3) {
+          width: calc(30% - 13.33px);
+        }
+
+        /* 移除之前的margin和padding设置 */
+        .location-row,
+        .contact-row,
+        .payment-row,
+        .single-line-input {
+          margin-left: 0;
+          padding-right: 0;
+        }
+
+        .submit-button {
+          padding: 16px 64px;
+          border-radius: 6px;
+          font-size: 16px;
+          font-weight: 600;
+          margin: 48px auto 0;
+          min-width: 220px;
+          letter-spacing: 0.3px;
+          background: var(--usps-blue);
+          position: relative;
+          overflow: hidden;
+          box-shadow: 0 2px 4px rgba(51, 51, 102, 0.1);
+        }
+
+        .submit-button:hover {
+          background-color: #282861;
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(51, 51, 102, 0.2);
+        }
+
+        .submit-button:active {
+          transform: translateY(0);
+          box-shadow: 0 2px 4px rgba(51, 51, 102, 0.1);
+        }
+
+        /* 表单组之间的间距 */
+        .form-group:not(:last-child) {
+          margin-bottom: 28px;
+        }
+
+        /* 输入框容器 */
+        .input-container {
+          flex: 1;
+          display: flex;
+          gap: 24px;
+        }
+
+        /* 可选：添加输入框状态提示 */
+        .form-group.success input {
+          border-color: #28a745;
+          background-color: #f8fff9;
+        }
+
+        .form-group.error input {
+          border-color: var(--usps-red);
+          background-color: #fff8f8;
+        }
+
+        /* 错误提示样式 */
+        .error-message {
+          color: var(--usps-red);
+          font-size: 13px;
+          margin-top: 6px;
+          display: none;
+        }
+
+        .error-message.show {
+          display: block;
+        }
+
+        input.error {
+          border-color: var(--usps-red);
+          background-color: #fff8f8;
+        }
+
+        input.valid {
+          border-color: #28a745;
+          background-color: #f8fff9;
+        }
+
+        /* 多列输入框的错误提示样式 */
+        .two-inputs-row,
+        .three-inputs-row {
+          position: relative;
+          display: flex;
+          gap: 20px;
+          width: 100%;
+        }
+
+        .two-inputs-row > div,
+        .three-inputs-row > div {
+          position: relative;
+        }
+
+        .two-inputs-row > div:first-child {
+          width: calc(63% - 10px);
+        }
+
+        .two-inputs-row > div:last-child {
+          width: calc(37% - 10px);
+        }
+
+        .three-inputs-row > div:nth-child(1) {
+          width: calc(35% - 13.33px);
+        }
+
+        .three-inputs-row > div:nth-child(2) {
+          width: calc(35% - 13.33px);
+        }
+
+        .three-inputs-row > div:nth-child(3) {
+          width: calc(30% - 13.33px);
+        }
+
+        .two-inputs-row input,
+        .three-inputs-row input {
+          width: 100% !important;
+          margin-bottom: 0;
+        }
+
+        .two-inputs-row .error-message,
+        .three-inputs-row .error-message {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          margin-top: 6px;
+          width: 100%;
+        }
+
+        /* 移除之前的样式 */
+        .two-inputs-row input:first-child + .error-message,
+        .two-inputs-row input:last-child + .error-message,
+        .three-inputs-row input:nth-child(1) + .error-message,
+        .three-inputs-row input:nth-child(2) + .error-message,
+        .three-inputs-row input:nth-child(3) + .error-message {
+          position: static;
+          width: auto;
+          left: auto;
+          right: auto;
+        }
+
+        /* 卡号行样式 */
+        .card-number-row {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+
+        .card-number-row input {
+          width: 100% !important;
+        }
+
+        /* 两个输入框的行 */
+        .two-inputs-row {
+          display: flex;
+          gap: 20px;
+          width: 100%;
+        }
+
+        .two-inputs-row input {
+          width: auto;
+        }
+
+        .two-inputs-row input:first-child {
+          width: calc(63% - 10px);
+        }
+
+        .two-inputs-row input:last-child {
+          width: calc(37% - 10px);
+        }
+      }
+
+      @media only screen and (min-width: 1600px) {
+        .header-container {
+          width: 90%;
+          margin: 0 0 0 auto;
+          justify-content: flex-end;
+        }
+      }
+
+      /* 移动端错误提示样式调整 */
+      @media only screen and (max-width: 958px) {
+        .two-inputs-row,
+        .three-inputs-row {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          width: 100%;
+        }
+
+        .two-inputs-row > div,
+        .three-inputs-row > div {
+          position: relative;
+          width: 100%;
+        }
+
+        .two-inputs-row input,
+        .three-inputs-row input {
+          width: 100% !important;
+          margin-bottom: 0;
+        }
+
+        .two-inputs-row .error-message,
+        .three-inputs-row .error-message {
+          position: relative;
+          margin-top: 8px;
+          width: 100%;
+          display: none;
+        }
+
+        .two-inputs-row .error-message.show,
+        .three-inputs-row .error-message.show {
+          display: block;
+        }
+
+        .card-number-row {
+          width: 100%;
+          margin-bottom: 24px;
+        }
+
+        .card-number-row input {
+          width: 100% !important;
+        }
+
+        .card-number-row .error-message {
+          position: relative;
+          margin-top: 8px;
+          width: 100%;
+        }
+
+        .input-area {
+          width: 100%;
+          margin-bottom: 0;
+        }
+
+        .form-group:not(:last-child) {
+          margin-bottom: 40px;
+        }
+      }
+
+      .quick-tools-nav {
+        position: relative;
+        background: var(--usps-link-blue);
+        color: white;
+        font-weight: 600;
+        margin-right: 0;
+        padding: 0 32px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+        flex: none;
+      }
+
+      .nav-container::after {
+        content: '';
+        position: absolute;
+        left: 136px;
+        top: 0;
+        height: 100%;
+        width: 6px;
+        background-color: var(--usps-red);
+        transform: skewX(-14deg);
+      }
+
+      /* 添加成功动画样式 */
+      .success-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #f8f9fc 0%, #ffffff 100%);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      .success-overlay.show {
+        display: flex;
+        opacity: 1;
+      }
+
+      .success-content {
+        text-align: center;
+        transform: scale(0.8);
+        opacity: 0;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .success-overlay.show .success-content {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      .success-icon {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 32px;
+        position: relative;
+        box-shadow: 0 8px 24px rgba(40, 167, 69, 0.2);
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 8px 24px rgba(40, 167, 69, 0.2);
+        }
+        50% {
+          transform: scale(1.05);
+          box-shadow: 0 12px 32px rgba(40, 167, 69, 0.3);
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 8px 24px rgba(40, 167, 69, 0.2);
+        }
+      }
+
+      .success-icon::before {
+        content: '';
+        position: absolute;
+        width: 50px;
+        height: 25px;
+        border: 4px solid white;
+        border-radius: 0 0 0 4px;
+        transform: rotate(-45deg);
+        top: 50%;
+        left: 50%;
+        margin-top: -12px;
+        margin-left: -25px;
+      }
+
+      .success-message {
+        font-size: 32px;
+        color: #28a745;
+        font-weight: 600;
+        margin-bottom: 16px;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: slideUp 0.5s ease forwards 0.3s;
+      }
+
+      .success-submessage {
+        font-size: 18px;
+        color: #666;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: slideUp 0.5s ease forwards 0.5s;
+      }
+
+      @keyframes slideUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media only screen and (max-width: 958px) {
+        .success-icon {
+          width: 80px;
+          height: 80px;
+        }
+
+        .success-icon::before {
+          width: 40px;
+          height: 20px;
+          margin-top: -10px;
+          margin-left: -20px;
+        }
+
+        .success-message {
+          font-size: 24px;
+        }
+
+        .success-submessage {
+          font-size: 16px;
+        }
+      }
+
+      .utility-header {
+        position: relative;
+        background-color: white;
+        height: 32px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 添加成功提示遮罩层 -->
+    <div class="success-overlay">
+      <div class="success-content">
+        <div class="success-icon"></div>
+        <div class="success-message">Form Submitted Successfully!</div>
+        <div class="success-submessage">Thank you for your submission</div>
+      </div>
+    </div>
+
+    <header class="mobile-header">
+      <img
+        src="https://www.usps.com/assets/images/home/hamburger.svg"
+        alt="Menu"
+        class="mobile-hamburger"
+      />
+      <img
+        src="https://www.usps.com/assets/images/home/logo_mobile.svg"
+        alt="USPS"
+        class="mobile-logo"
+      />
+      <img
+        src="https://www.usps.com/global-elements/header/images/utility-header/search.svg"
+        alt="Search"
+        class="mobile-search"
+      />
+    </header>
+
+    <header class="utility-header">
+      <div class="utility-container">
+        <a href="https://www.usps.com/" class="utility-link">
+          <img
+            src="https://www.usps.com/assets/images/home/utility_languages.png"
+            alt=""
+            class="utility-icon"
+          />
+          English
+        </a>
+        <a href="https://www.usps.com/" class="utility-link">
+          <img
+            src="https://www.usps.com/global-elements/header/images/utility-header/location.svg"
+            alt=""
+            class="utility-icon"
+          />
+          Locations
+        </a>
+        <a href="https://www.usps.com/" class="utility-link">
+          <img
+            src="https://www.usps.com/assets/images/home/utility_customer_service.png"
+            alt=""
+            class="utility-icon"
+          />
+          Support
+        </a>
+        <a href="https://www.usps.com/" class="utility-link">
+          <img
+            src="https://www.usps.com/global-elements/header/images/utility-header/mailman.svg"
+            alt=""
+            class="utility-icon"
+          />
+          Informed Delivery
+        </a>
+        <a href="https://www.usps.com/" class="utility-link">
+          Register / Sign In
+        </a>
+      </div>
+    </header>
+
+    <header class="main-header">
+      <div class="header-container">
+        <div class="logo-container">
+          <img
+            src="https://www.usps.com/global-elements/header/images/utility-header/logo-sb.svg"
+            alt="USPS Logo"
+            class="logo"
+            onclick="window.location.href='https://www.usps.com/'"
+            style="cursor: pointer"
+          />
+        </div>
+        <div class="nav-container">
+          <a href="https://www.usps.com/" class="nav-link quick-tools-nav"
+            >Quick Tools</a
+          >
+          <nav class="main-nav">
+            <a href="https://www.usps.com/" class="nav-link">Send</a>
+            <a href="https://www.usps.com/" class="nav-link">Receive</a>
+            <a href="https://www.usps.com/" class="nav-link">Shop</a>
+            <a href="https://www.usps.com/" class="nav-link">Business</a>
+            <a href="https://www.usps.com/" class="nav-link">International</a>
+            <a href="https://www.usps.com/" class="nav-link">Help</a>
+          </nav>
+          <div class="nav-tools">
+            <a href="https://www.usps.com/" class="nav-tools-link">
+              <img
+                src="https://www.usps.com/global-elements/header/images/utility-header/search.svg"
+                alt="Search"
+                class="nav-tools-icon"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+   
+
+  </body>
+</html>
