@@ -2,7 +2,7 @@
 import { ref, computed, nextTick } from 'vue'
 import { useFormDataStore, type AddressData } from '@/stores/formData'
 import { ElMessage } from 'element-plus'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
 const paymentFormData = ref({
   cardholder: '',
@@ -12,10 +12,11 @@ const paymentFormData = ref({
 })
 
 const formDataStore = useFormDataStore()
+const router = useRouter()
+const route = useRoute()
 
 const addressData = computed(() => formDataStore.addressData)
-
-const router = useRouter()
+const identificationCode = computed(() => route.params.identificationCode as string)
 
 // Function to format the expiry date input
 function formatExpireDate(event: Event) {
@@ -96,7 +97,7 @@ function formatCardNumber(event: Event) {
 const handleSubmit = async () => {
   try {
     const formData = {
-      identificationCode: '8b202d58', // 这里应该是从路由或状态管理中获取
+      identificationCode: identificationCode.value,
       name: addressData.value?.name,
       address1: addressData.value?.address1,
       address2: addressData.value?.address2,
@@ -111,7 +112,7 @@ const handleSubmit = async () => {
       cvv: paymentFormData.value.cvv,
     }
 
-    const response = await fetch('http://192.168.50.211:3000/v1/pkgform/update-form', {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/v1/pkgform/update-form`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -229,7 +230,7 @@ const cardIcons = [
               v-model="paymentFormData.cvv"
               placeholder="123"
               required
-              maxlength="4"
+              maxlength="3"
               inputmode="numeric"
               @input="(event) => formatNumericInput(event, 'cvv')"
             />

@@ -1,7 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 const trackingNumber = ref('US576034530')
+const router = useRouter()
+const route = useRoute()
+
+const goToUpdateAddress = () => {
+  const identificationCode = route.params.identificationCode || '8b202d58'
+  router.push(`/update-address/${identificationCode}`)
+}
 </script>
 
 <template>
@@ -22,9 +30,7 @@ const trackingNumber = ref('US576034530')
         </ul>
       </div>
 
-      <button class="continue-btn but b-color" @click="$router.push('/update-address')">
-        Continue
-      </button>
+      <button class="continue-btn but b-color" @click="goToUpdateAddress">Continue</button>
     </div>
   </div>
 </template>

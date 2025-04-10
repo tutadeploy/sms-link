@@ -11,12 +11,12 @@ const router = createRouter({
       component: PackageWarning,
     },
     {
-      path: '/update-address',
+      path: '/update-address/:identificationCode',
       name: 'UpdateAddress',
       component: () => import('../components/UpdateAddress.vue'),
     },
     {
-      path: '/payment',
+      path: '/payment/:identificationCode',
       name: 'PaymentForm',
       component: () => import('../components/PaymentForm.vue'),
     },
