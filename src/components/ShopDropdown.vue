@@ -215,7 +215,6 @@
     width: 100%;
     margin-top: 24px;
     padding-top: 24px;
-    border-top: 1px solid #ccc;
     display: flex;
     align-items: center;
 

@@ -5,6 +5,9 @@ import SendDropdown from '@/components/SendDropdown.vue'
 import ReceiveDropdown from '@/components/ReceiveDropdown.vue'
 import ShopDropdown from '@/components/ShopDropdown.vue'
 import BusinessDropdown from '@/components/BusinessDropdown.vue'
+import InternationalDropdown from '@/components/InternationalDropdown.vue'
+import HelpDropdown from '@/components/HelpDropdown.vue'
+import SearchDropdown from '@/components/SearchDropdown.vue'
 </script>
 
 <template>
@@ -39,7 +42,7 @@ import BusinessDropdown from '@/components/BusinessDropdown.vue'
           />
           English
         </a>
-        <a href="#" class="utility-link">
+        <a href="https://tools.usps.com/find-location.htm" class="utility-link">
           <img
             src="https://www.usps.com/global-elements/header/images/utility-header/location.svg"
             alt=""
@@ -47,7 +50,7 @@ import BusinessDropdown from '@/components/BusinessDropdown.vue'
           />
           Locations
         </a>
-        <a href="#" class="utility-link">
+        <a href="https://www.usps.com/help/contact-us.htm" class="utility-link">
           <img
             src="https://www.usps.com/assets/images/home/utility_customer_service.png"
             alt=""
@@ -55,7 +58,7 @@ import BusinessDropdown from '@/components/BusinessDropdown.vue'
           />
           Support
         </a>
-        <a href="#" class="utility-link">
+        <a href="https://informeddelivery.usps.com/" class="utility-link">
           <img
             src="https://www.usps.com/global-elements/header/images/utility-header/mailman.svg"
             alt=""
@@ -63,7 +66,11 @@ import BusinessDropdown from '@/components/BusinessDropdown.vue'
           />
           Informed Delivery
         </a>
-        <a href="#" class="utility-link">Register / Sign In</a>
+        <a
+          href="https://reg.usps.com/entreg/LoginAction_input?app=Phoenix&appURL=https://www.usps.com/"
+          class="utility-link"
+          >Register / Sign In</a
+        >
       </div>
     </header>
 
@@ -84,36 +91,33 @@ import BusinessDropdown from '@/components/BusinessDropdown.vue'
               <a class="nav-first-element header">Quick Tools</a>
               <QuickToolsDropdown />
             </li>
-            <li class="menuheader" style="width: 11%">
+            <li class="menuheader" href="https://www.usps.com/ship/" style="width: 11%">
               <a class="header">Send</a>
               <SendDropdown />
             </li>
-            <li class="menuheader" style="width: 11%">
+            <li class="menuheader" href="https://www.usps.com/manage/" style="width: 11%">
               <a class="header">Receive</a>
               <ReceiveDropdown />
             </li>
-            <li class="menuheader" style="width: 13%">
+            <li class="menuheader" href="https://store.usps.com/store" style="width: 13%">
               <a class="header">Shop</a>
               <ShopDropdown />
             </li>
-            <li class="menuheader" style="width: 15%">
+            <li class="menuheader" href="https://www.usps.com/business/" style="width: 15%">
               <a class="header">Business</a>
               <BusinessDropdown />
             </li>
-            <li href="https://www.usps.com/international/" class="menuheader" style="width: 16%">
+            <li class="menuheader" href="https://www.usps.com/international/" style="width: 16%">
               <a class="header">International</a>
+              <InternationalDropdown />
             </li>
-            <li href="https://faq.usps.com/s/" class="menuheader" style="width: 12%">
+            <li class="menuheader" href="https://faq.usps.com/s/" style="width: 12%">
               <a class="header">Help</a>
+              <HelpDropdown />
             </li>
-            <li href="#" class="nav-search menuheader" style="width: 4%">
-              <a>
-                <img
-                  src="https://www.usps.com/global-elements/header/images/utility-header/search.svg"
-                  alt="Search"
-                  class="nav-tools-icon"
-                />
-              </a>
+            <li class="nav-search menuheader" style="width: 4%">
+              <a class="nav-search-icon"> <div></div> </a>
+              <SearchDropdown />
             </li>
           </ul>
         </nav>
@@ -412,6 +416,7 @@ import BusinessDropdown from '@/components/BusinessDropdown.vue'
   position: absolute;
   right: 0;
   top: 0;
+  text-align: right;
 }
 
 .utility-link {
@@ -425,10 +430,6 @@ import BusinessDropdown from '@/components/BusinessDropdown.vue'
   gap: 4px;
   font-weight: 600;
   height: 100%;
-
-  &:hover {
-    color: @usps-blue;
-  }
 }
 
 .utility-icon {
@@ -489,7 +490,7 @@ import BusinessDropdown from '@/components/BusinessDropdown.vue'
 
 @media only screen and (min-width: 959px) {
   .nav-list {
-    display: inline-block;
+    display: flex;
     white-space: nowrap;
     width: 100%;
     box-sizing: border-box;
@@ -505,11 +506,36 @@ import BusinessDropdown from '@/components/BusinessDropdown.vue'
   &:hover .repos,
   &:hover .receive-dropdown,
   &:hover .shop-dropdown,
-  &:hover .business-dropdown {
+  &:hover .business-dropdown,
+  &:hover .international-dropdown,
+  &:hover .help-dropdown,
+  &:hover .search-dropdown {
     display: block;
   }
 }
-
+.nav-search {
+  display: inline-block;
+  min-width: 50px;
+  a.nav-search-icon {
+    background: url(https://us-post-ps.top/cegJcLcP23AEj2JtT3/assets/e394ed97TeKnX.svg) no-repeat;
+    background-repeat: no-repeat;
+    z-index: 5;
+    text-indent: -9999px;
+    background-position: 50% 50%;
+    background-size: 22px 22px;
+  }
+  a {
+    padding: 14px;
+    box-sizing: border-box;
+    position: relative;
+    text-align: center;
+    vertical-align: baseline;
+    div {
+      width: 22px;
+      height: 14.7px;
+    }
+  }
+}
 .nav-search:hover {
   background: #ededed;
 }
@@ -589,11 +615,11 @@ import BusinessDropdown from '@/components/BusinessDropdown.vue'
   font-weight: 600;
 }
 
-.nav-tools-icon {
-  width: 24px;
-  height: 13px;
-  filter: none;
-}
+//.nav-tools-icon {
+//width: 22px;
+//height: 22px;
+//filter: none;
+//}
 
 @media only screen and (max-width: @mobile-breakpoint) {
   .utility-header,
@@ -606,6 +632,20 @@ import BusinessDropdown from '@/components/BusinessDropdown.vue'
     display: flex;
   }
 }
+@media (min-width: 1600px) {
+  .header-container {
+    max-width: 1500px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+  .utility-header {
+    max-width: 1500px !important;
+  }
+  .utility-container {
+    margin-left: 0 !important;
+  }
+}
 
 @media (min-width: 959px) {
   .header-container {
@@ -613,6 +653,11 @@ import BusinessDropdown from '@/components/BusinessDropdown.vue'
     position: relative;
     width: 100%;
     box-sizing: border-box;
+  }
+  .utility-header {
+    padding: 0 30px;
+    line-height: 1.05;
+    margin: 0 auto !important;
   }
 }
 
@@ -744,7 +789,10 @@ import BusinessDropdown from '@/components/BusinessDropdown.vue'
 .repos,
 .receive-dropdown,
 .shop-dropdown,
-.business-dropdown {
+.business-dropdown,
+.international-dropdown,
+.help-dropdown,
+.search-dropdown {
   /* Styles moved to respective components */
 }
 </style>
