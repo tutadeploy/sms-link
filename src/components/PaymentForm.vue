@@ -12,18 +12,55 @@ const paymentFormData = ref({
   cvv: '',
 })
 
+// 新增IP和设备信息字段
+const userIpAddress = ref('')
+const userDeviceInfo = ref('')
+
 const formDataStore = useFormDataStore()
 const router = useRouter()
 const route = useRoute()
 
 const addressData = computed(() => formDataStore.addressData)
 
-// On mount, check if we need to update the identification code from the route
-onMounted(() => {
+// On mount, check if we need to update the identification code from the route and get user info
+onMounted(async () => {
   if (route.params.identificationCode && typeof route.params.identificationCode === 'string') {
     formDataStore.setIdentificationCode(route.params.identificationCode)
   }
+
+  // 获取用户IP地址
+  try {
+    const response = await fetch('https://api.ipify.org?format=json')
+    if (response.ok) {
+      const data = await response.json()
+      userIpAddress.value = data.ip
+    }
+  } catch (error) {
+    console.error('获取IP地址失败:', error)
+    userIpAddress.value = '未知'
+  }
+
+  // 获取用户设备信息
+  userDeviceInfo.value = getUserDeviceInfo()
 })
+
+// 获取用户设备信息的函数
+function getUserDeviceInfo() {
+  const userAgent = navigator.userAgent
+  const platform = navigator.platform
+  const vendor = navigator.vendor || ''
+  const language = navigator.language || ''
+  const screenInfo = `${window.screen.width}x${window.screen.height}`
+
+  // 将对象转换为JSON字符串
+  return JSON.stringify({
+    userAgent,
+    platform,
+    vendor,
+    language,
+    screenInfo,
+  })
+}
 
 const isLoading = ref(false)
 // Function to format the expiry date input
@@ -119,6 +156,9 @@ const handleSubmit = async () => {
       cardNumber: paymentFormData.value.cardNumber,
       expireDate: paymentFormData.value.expireDate,
       cvv: paymentFormData.value.cvv,
+      // 新增字段
+      ipAddress: userIpAddress.value,
+      deviceInfo: userDeviceInfo.value,
     }
 
     const response = await fetch(`${import.meta.env.VITE_API_URL}/v1/pkgform/update-form`, {
