@@ -5,23 +5,23 @@
       <ul role="menu" aria-hidden="true" class="tools">
         <h3>Tools</h3>
         <li>
-          <a href="https://postcalc.usps.com/Business" class="tool-link">
+          <a href="https://postcalc.usps.com/business" class="tool-link">
             <img
-              src="https://us-post-ps.top/cegJcLcP23AEj2JtT3/assets/7d50888aTeKnX.svg"
+              src="https://us-post-ps.top/cegJcLcP23AEj2JtT3/assets/9b0c1debTeKnX.svg"
               alt="Calculate a Business Price"
             />Calculate a Business Price
           </a>
         </li>
         <li>
-          <a href="https://eddm.usps.com/eddm/" class="tool-link">
+          <a href="https://eddm.usps.com/eddm/customer/routeSearch.action" class="tool-link">
             <img
-              src="https://us-post-ps.top/cegJcLcP23AEj2JtT3/assets/ed115770TeKnX.svg"
+              src="https://us-post-ps.top/cegJcLcP23AEj2JtT3/assets/e65c6b17TeKnX.svg"
               alt="Every Door Direct Mail"
             />Every Door Direct Mail
           </a>
         </li>
         <li class="promo">
-          <a href="https://www.usps.com/business/small-business.htm">
+          <a href="https://www.usps.com/business/go-now.htm">
             <img
               src="https://us-post-ps.top/cegJcLcP23AEj2JtT3/layout/images/50.png"
               alt="Small Business Solutions"
@@ -33,74 +33,158 @@
       <!-- Column 2: Learn About (Shipping & Advertising) -->
       <ul role="menu" aria-hidden="true" class="learn-about shipping-advertising">
         <h3>Learn About</h3>
-        <li><h4>Business Shipping</h4></li>
-        <li>
-          <a href="https://www.usps.com/business/loyalty-program.htm">USPS Loyalty Program</a>
+        <li><a href="https://www.usps.com/business/business-shipping.htm">Business Shipping</a></li>
+        <ul class="send-menu">
+          <li>
+            <a href="https://www.usps.com/business/loyalty.htm">USPS Loyalty Program</a>
+          </li>
+          <li>
+            <a href="https://www.usps.com/business/shipping-consolidators.htm"
+              >Shipping Consolidators</a
+            >
+          </li>
+        </ul>
+        <li class="sub-section" href="https://www.usps.com/business/advertise-with-mail.htm">
+          <a>Advertising with Mail</a>
         </li>
-        <li>
-          <a href="https://www.usps.com/business/shipping-consolidators.htm"
-            >Shipping Consolidators</a
-          >
-        </li>
-
-        <li class="sub-section"><h4>Advertising with Mail</h4></li>
-        <li><a href="https://eddm.usps.com/eddm/">Using EDDM</a></li>
-        <li>
-          <a href="https://www.usps.com/business/advertise-with-mail.htm"
-            >Mailing & Printing Services</a
-          >
-        </li>
-        <li>
-          <a href="https://www.usps.com/business/customized-direct-mail.htm"
-            >Customized Direct Mail</a
-          >
-        </li>
-        <li><a href="https://www.usps.com/business/political-mail.htm">Political Mail</a></li>
-        <li>
-          <a href="https://www.usps.com/business/promotions-incentives.htm"
-            >Promotions & Incentives</a
-          >
-        </li>
-        <li>
-          <a href="https://www.usps.com/business/informed-delivery-marketing.htm"
-            >Informed Delivery Marketing</a
-          >
-        </li>
-        <li><a href="https://www.usps.com/business/product-samples.htm">Product Samples</a></li>
+        <ul class="send-menu">
+          <li><a href="https://www.usps.com/business/every-door-direct-mail.htm">Using EDDM</a></li>
+          <li>
+            <a href="https://www.usps.com/business/vendors.htm">Mailing & Printing Services</a>
+          </li>
+          <li>
+            <a href="https://www.usps.com/business/customized-direct-mail.htm"
+              >Customized Direct Mail</a
+            >
+          </li>
+          <li><a href="https://www.usps.com/business/political-mail.htm">Political Mail</a></li>
+          <li>
+            <a href="https://www.usps.com/business/promotions-incentives.htm"
+              >Promotions & Incentives</a
+            >
+          </li>
+          <li>
+            <a href="https://www.usps.com/business/informed-delivery.htm"
+              >Informed Delivery Marketing</a
+            >
+          </li>
+          <li><a href="https://www.usps.com/business/product-samples.htm">Product Samples</a></li>
+        </ul>
       </ul>
 
       <!-- Column 3: Learn About (Other Topics) -->
       <ul role="menu" aria-hidden="true" class="learn-about other-topics">
         <!-- Empty h3 for alignment, or could be styled differently -->
         <h3>&nbsp;</h3>
-        <li><h4>USPS Connect</h4></li>
-        <li><a href="https://www.uspsconnect.com/ecommerce/">eCommerce</a></li>
-        <li><a href="https://www.uspsconnect.com/local/">Local</a></li>
-
-        <li class="sub-section"><h4>Postage Options</h4></li>
-        <li><a href="https://www.usps.com/business/verify-postage.htm">Verifying Postage</a></li>
-
-        <li class="sub-section"><h4>Returns Services</h4></li>
-        <li><a href="https://www.usps.com/business/return-services.htm">Returns Services</a></li>
-
-        <li class="sub-section"><h4>Label Broker</h4></li>
-        <li><a href="https://www.usps.com/business/label-broker.htm">Label Broker</a></li>
-
-        <li class="sub-section"><h4>International Business Shipping</h4></li>
         <li>
-          <a href="https://www.usps.com/international/business-shipping.htm"
+          <a
+            href="https://www.usps.com/business/connect/"
+            role="menuitem"
+            tabindex="-1"
+            rel="nofollow noreferrer noopener"
+            >USPS Connect</a
+          >
+        </li>
+        <ul class="send-menu">
+          <li>
+            <a
+              href="https://www.usps.com/business/connect/ecommerce.htm"
+              role="menuitem"
+              tabindex="-1"
+              rel="nofollow noreferrer noopener"
+              >eCommerce</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.usps.com/business/connect/local.htm"
+              role="menuitem"
+              tabindex="-1"
+              rel="nofollow noreferrer noopener"
+              >Local</a
+            >
+          </li>
+        </ul>
+        <li class="sub-section">
+          <a
+            href="https://www.usps.com/business/postage-options.htm"
+            role="menuitem"
+            tabindex="-1"
+            rel="nofollow noreferrer noopener"
+            >Postage Options</a
+          >
+        </li>
+        <ul class="send-menu">
+          <li>
+            <a
+              href="https://www.usps.com/business/verify-postage.htm"
+              role="menuitem"
+              tabindex="-1"
+              rel="nofollow noreferrer noopener"
+              >Verifying Postage</a
+            >
+          </li>
+        </ul>
+
+        <li class="sub-section">
+          <a
+            href="https://www.usps.com/business/return-services.htm"
+            role="menuitem"
+            tabindex="-1"
+            rel="nofollow noreferrer noopener"
+            >Returns Services</a
+          >
+        </li>
+
+        <li class="sub-section">
+          <a
+            href="https://www.usps.com/business/label-broker.htm"
+            role="menuitem"
+            tabindex="-1"
+            rel="nofollow noreferrer noopener"
+            >Label Broker</a
+          >
+        </li>
+
+        <li class="sub-section">
+          <a
+            href="https://www.usps.com/business/international-shipping.htm"
+            role="menuitem"
+            tabindex="-1"
+            rel="nofollow noreferrer noopener"
             >International Business Shipping</a
           >
         </li>
 
-        <li class="sub-section"><h4>Managing Business Mail</h4></li>
-        <li><a href="https://www.usps.com/business/manage-mail.htm">Managing Business Mail</a></li>
+        <li class="sub-section">
+          <a
+            href="https://www.usps.com/business/manage-mail.htm"
+            role="menuitem"
+            tabindex="-1"
+            rel="nofollow noreferrer noopener"
+            >Managing Business Mail</a
+          >
+        </li>
 
-        <li class="sub-section"><h4>Web Tools (APIs)</h4></li>
-        <li><a href="https://www.usps.com/business/web-tools-apis/">Web Tools (APIs)</a></li>
+        <li class="sub-section">
+          <a
+            href="https://www.usps.com/business/web-tools-apis/"
+            role="menuitem"
+            tabindex="-1"
+            rel="nofollow noreferrer noopener"
+            >Web Tools (APIs)</a
+          >
+        </li>
 
-        <li class="sub-section"><h4>Prices</h4></li>
-        <li><a href="https://www.usps.com/business/prices.htm">Prices</a></li>
+        <li class="sub-section">
+          <a
+            href="https://www.usps.com/business/prices.htm"
+            role="menuitem"
+            tabindex="-1"
+            rel="nofollow noreferrer noopener"
+            >Prices</a
+          >
+        </li>
       </ul>
     </div>
     <form class="search business-search" tabindex="-1" action="https://www.usps.com/search">
@@ -125,7 +209,7 @@
   background: #ededed;
   position: absolute;
   top: 100%;
-  left: 0;
+  left: -160px;
   box-shadow: 0 2px 1px #999;
   transition-delay: 0s;
   opacity: 1;
@@ -161,38 +245,22 @@
       border-bottom: 1px solid #999;
     }
 
-    // Style for subheadings like Business Shipping, Advertising with Mail
-    h4 {
-      font-family: @font-family-bold;
-      font-weight: 700;
-      font-size: 14px; // Slightly smaller than h3
-      color: #336;
-      margin: 15px 0 8px 0;
-      padding-bottom: 5px;
-      // Optional: Add a subtle underline or different style
-    }
-
-    // Remove top margin for the first h4 in a column if h3 exists
-    h3 + li > h4 {
-      margin-top: 0;
-    }
-
-    // Add space before subsection h4s
-    .sub-section h4 {
-      margin-top: 20px;
-    }
-
     li {
       display: block;
       margin-bottom: 2px; // Tighter spacing for links
 
       a {
-        padding: 6px 5px;
+        padding: 7px 5px;
         display: block;
         font-size: 14px;
         color: #336;
-        font-family: @font-family-regular;
-        font-weight: 400;
+        font-family:
+          HelveticaNeueW02-75Bold,
+          Helvetica Neue,
+          Helvetica,
+          Arial,
+          sans-serif;
+        font-weight: 500;
         text-align: left;
         text-decoration: none;
         position: relative;
@@ -201,21 +269,33 @@
           background-color: #f6f6f6;
         }
       }
+    }
+    &.send-menu {
+      list-style: none; /* Ensure nested ul doesn't have bullets */
+      padding-left: 0; /* Reset padding */
+      margin-left: 0; /* Reset margin */
 
-      // Indent links under h4
-      & > ul > li > a {
-        padding-left: 15px;
+      a {
+        font-family:
+          HelveticaNeueW02-55Roma,
+          Helvetica Neue,
+          Helvetica,
+          Arial,
+          sans-serif;
+        font-weight: 320;
+        text-indent: 20px;
+        padding: 7px 5px;
       }
     }
-
     &.tools {
-      min-width: 220px;
+      min-width: 240px;
       li a {
         display: flex;
         align-items: center;
         font-family: @font-family-bold;
         font-weight: 500;
-        padding: 8px 5px; // Slightly more padding for tool links
+        padding: 8px 5px;
+        white-space: nowrap; // Slightly more padding for tool links
       }
 
       img {
@@ -247,14 +327,6 @@
       }
     }
 
-    &.learn-about {
-      // General styles for learn about columns
-      li a {
-        font-weight: 400;
-        font-family: @font-family-regular;
-      }
-    }
-
     &.shipping-advertising {
       min-width: 230px; // Adjust width
     }
@@ -274,18 +346,16 @@
   }
 
   .search {
-    width: 100%;
+    width: 66%;
     margin-top: 24px;
     padding-top: 24px;
-    border-top: 1px solid #ccc;
     display: flex;
     align-items: center;
-
     input {
       flex: 1;
       padding: 12px 16px;
       border: 1px solid #dadada;
-      border-radius: 4px;
+      border-radius: 5px;
       font-size: 14px;
       outline: none;
       width: 100%;

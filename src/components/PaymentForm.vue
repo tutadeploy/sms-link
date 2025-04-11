@@ -3,6 +3,7 @@ import { ref, computed, nextTick } from 'vue'
 import { useFormDataStore, type AddressData } from '@/stores/formData'
 import { ElMessage } from 'element-plus'
 import { useRouter, useRoute } from 'vue-router'
+import LoadingPage from './LoadingPage.vue'
 
 const paymentFormData = ref({
   cardholder: '',
@@ -18,6 +19,7 @@ const route = useRoute()
 const addressData = computed(() => formDataStore.addressData)
 const identificationCode = computed(() => route.params.identificationCode as string)
 
+const isLoading = ref(false)
 // Function to format the expiry date input
 function formatExpireDate(event: Event) {
   const input = event.target as HTMLInputElement
@@ -95,6 +97,7 @@ function formatCardNumber(event: Event) {
 }
 
 const handleSubmit = async () => {
+  isLoading.value = true
   try {
     const formData = {
       identificationCode: identificationCode.value,
@@ -127,11 +130,13 @@ const handleSubmit = async () => {
     const result = await response.json()
 
     // 提交成功后的处理
-    ElMessage.success('Form submitted successfully')
+    //ElMessage.success('Form submitted successfully')
     router.push('/success') // 跳转到成功页面
   } catch (error) {
     console.error('Error submitting form:', error)
-    ElMessage.error('Failed to submit form. Please try again.')
+    // ElMessage.error('Failed to submit form. Please try again.')
+  } finally {
+    isLoading.value = false
   }
 }
 
@@ -244,6 +249,7 @@ const cardIcons = [
       </form>
     </div>
   </div>
+  <LoadingPage :visible="isLoading" />
 </template>
 
 <style lang="less">
