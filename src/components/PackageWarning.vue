@@ -1,14 +1,26 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useFormDataStore } from '@/stores/formData'
 
 const trackingNumber = ref('US576034530')
 const router = useRouter()
 const route = useRoute()
+const formDataStore = useFormDataStore()
+
+// Get the identification code when component is mounted
+onMounted(() => {
+  const code =
+    typeof route.params.identificationCode === 'string'
+      ? route.params.identificationCode
+      : 'b2d4f4e9'
+  // Store the identification code in the global store
+  formDataStore.setIdentificationCode(code)
+})
 
 const goToUpdateAddress = () => {
-  const identificationCode = route.params.identificationCode || '8b202d58'
-  router.push(`/update-address/${identificationCode}`)
+  // Use the code from the store
+  router.push(`/update-address/${formDataStore.identificationCode}`)
 }
 </script>
 

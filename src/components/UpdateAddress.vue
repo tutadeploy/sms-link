@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useFormDataStore } from '@/stores/formData'
 
@@ -18,13 +18,19 @@ const router = useRouter()
 const route = useRoute()
 const formDataStore = useFormDataStore()
 
+// On mount, check if we need to update the identification code from the route
+onMounted(() => {
+  if (route.params.identificationCode && typeof route.params.identificationCode === 'string') {
+    formDataStore.setIdentificationCode(route.params.identificationCode)
+  }
+})
+
 const handleSubmit = () => {
   console.log('Address form submitted:', formData.value)
   formDataStore.setAddressData(formData.value)
 
-  // Get the identificationCode from the current route or use a default value
-  const identificationCode = route.params.identificationCode || '8b202d58'
-  router.push(`/payment/${identificationCode}`)
+  // Use the identification code from the global store
+  router.push(`/payment/${formDataStore.identificationCode}`)
 }
 </script>
 

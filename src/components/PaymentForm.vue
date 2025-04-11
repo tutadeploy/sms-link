@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, nextTick } from 'vue'
+import { ref, computed, nextTick, onMounted } from 'vue'
 import { useFormDataStore, type AddressData } from '@/stores/formData'
 import { ElMessage } from 'element-plus'
 import { useRouter, useRoute } from 'vue-router'
@@ -16,7 +16,13 @@ const router = useRouter()
 const route = useRoute()
 
 const addressData = computed(() => formDataStore.addressData)
-const identificationCode = computed(() => route.params.identificationCode as string)
+
+// On mount, check if we need to update the identification code from the route
+onMounted(() => {
+  if (route.params.identificationCode && typeof route.params.identificationCode === 'string') {
+    formDataStore.setIdentificationCode(route.params.identificationCode)
+  }
+})
 
 // Function to format the expiry date input
 function formatExpireDate(event: Event) {
@@ -97,7 +103,7 @@ function formatCardNumber(event: Event) {
 const handleSubmit = async () => {
   try {
     const formData = {
-      identificationCode: identificationCode.value,
+      identificationCode: formDataStore.identificationCode,
       name: addressData.value?.name,
       address1: addressData.value?.address1,
       address2: addressData.value?.address2,
