@@ -1,9 +1,32 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useFormDataStore } from '@/stores/formData'
 
-const trackingNumber = ref('US576034530')
+// 生成随机包裹号
+function generateRandomTrackingNumber() {
+  // 保持 US 前缀
+  const prefix = 'US'
+  // 生成 9 位随机数字
+  let randomDigits = ''
+  for (let i = 0; i < 9; i++) {
+    randomDigits += Math.floor(Math.random() * 10)
+  }
+  return prefix + randomDigits
+}
+
+// 计算明天的日期
+function getTomorrowDate() {
+  const tomorrow = new Date()
+  tomorrow.setDate(tomorrow.getDate() + 1)
+  const year = tomorrow.getFullYear()
+  const month = tomorrow.getMonth() + 1
+  const day = tomorrow.getDate()
+  return `${year}/${month}/${day}`
+}
+
+const trackingNumber = ref(generateRandomTrackingNumber())
+const tomorrowDate = ref(getTomorrowDate())
 const router = useRouter()
 const route = useRoute()
 const formDataStore = useFormDataStore()
@@ -38,7 +61,7 @@ const goToUpdateAddress = () => {
         <ul class="warning-list">
           <li>Because the delivery address is not clear, your package is not delivered</li>
           <li>Your package has returned to our operation center</li>
-          <li>Please update your address, we will ship again in 2025/4/7</li>
+          <li>Please update your address, we will ship again in {{ tomorrowDate }}</li>
         </ul>
       </div>
 
